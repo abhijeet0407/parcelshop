@@ -255,6 +255,44 @@ th {
     border: 1px solid #ddd !important;
   }
 }
+
+
+/*custom css*/
+.delete_parcel{    margin-top: -23px;
+    z-index: 999;}
+.ui-autocomplete {
+    position: absolute;
+    z-index: 1000;
+    cursor: default;
+    padding: 0;
+    margin-top: 2px;
+    list-style: none;
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #ccc;
+  height:150px;
+  overflow-y:scroll;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.ui-autocomplete > li {
+  padding: 3px 20px;
+  border-bottom:1px dotted #ccc;
+}
+.ui-autocomplete > li:last-child {
+  
+
+  
+}
+.ui-autocomplete > li.ui-state-focus {
+  background-color: #DDD;
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+.ui-widget-content{ border-radius:0px !important;}
+/*custom css*/
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../fonts/glyphicons-halflings-regular.eot');
@@ -13107,6 +13145,7 @@ a.thumbnail.active {
 @media screen and (min-width: 768px) and (max-width: 1499px) {
   #c-grid[data-columns]::before {
     content: '2 .column.size-1of2';
+    display: none !important;
   }
 }
 @media screen and (max-width: 767px) {

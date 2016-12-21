@@ -36,13 +36,19 @@
                 </li> -->
                 <li class="dropdown hm-profile">
                     <a data-toggle="dropdown" href="">
-                    <img src="img/dhl.png" alt=""> 
+                    <img src="/img/dhl.png" alt=""> 
                     </a>
                     
                     <ul class="dropdown-menu pull-right dm-icon">
                         
                         <li>
-                            <a href="javascript:void(0)"><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                            <a href="<?php echo url('/logout') ?>" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                            
+
+                                        <form id="logout-form" action="<?php echo url('/logout') ?>" method="POST" style="display: none;">
+                                            <?php echo csrf_field() ?>
+                                        </form>
                         </li>
                     </ul>
                 </li>

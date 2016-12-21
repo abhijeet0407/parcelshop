@@ -1,4 +1,20 @@
 $(document).ready(function () {
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
     $('body').on('click', '[data-ma-action]', function (e) {
         e.preventDefault();
         
@@ -104,14 +120,25 @@ $(document).ready(function () {
 
                 x.fadeIn(300);
                 x.find('.ahs-input').focus();
+                $('.alt_menu').addClass('palette-Teal bg')
 
                 break;
 
             //Close action header search
             case 'ah-search-close':
-                    x.fadeOut(300);
+                    $('.ah-search').fadeOut(300);
+                    $('.alt_menu').removeClass('palette-Teal bg')
                     setTimeout(function(){
-                        x.find('.ahs-input').val('');
+                        var q = getUrlParameter('q');
+                            
+                        var pathname = window.location.pathname;
+                        if(typeof q != 'undefined'){
+                            window.location.href=pathname;
+                        }
+                         
+
+                        
+
                     }, 350);
 
                 break;

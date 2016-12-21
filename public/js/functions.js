@@ -708,10 +708,64 @@ $(document).ready(function(){
 
     $('body').on('keyup','.search_text',function(){
 
-        var search_text=$(this).val();
+        /*var search_text=$(this).val();
         var pathname = window.location.pathname;
-        window.location.href=pathname+'?q='+search_text;
+        window.location.href=pathname+'?q='+search_text;*/
 
     });
+
+    
+                //singledelete
+                    $('body').on('click','.singleDelete',function(){
+                        //alert('test')
+                        var rel=$(this).attr('rel');
+                            var bel=$(this).attr('data-table');
+
+                        swal({
+                          title: "Are you sure?",
+                          text: "You want to delete the data!",
+                          type: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#DD6B55",
+                          confirmButtonText: "Yes, delete it!",
+                          closeOnConfirm: true
+                        },
+                        function(){
+                          
+
+                            //console.log(rel);
+                            $.ajax({
+                                url: APP_URL+'/'+bel+'/singledelete',
+                                type: 'GET',
+                                data: 'id='+rel,
+                            })
+                            .done(function(data) {
+                                if(data=='deleted'){
+                                    $('.list-group-item[rel="'+rel+'"]').remove();
+                                }
+                            })
+                            .fail(function() {
+                                console.log("error");
+                            })
+                            .always(function() {
+                                console.log("complete");
+                            });
+
+                            });
+
+
+                        
+                        
+                        
+
+                    });
+
+                   //single delete end 
+
+
+                    
+            
+
+
 
 });

@@ -1,4 +1,4 @@
-<footer id="footer">
+            <footer id="footer">
                 Copyright &copy; DHL Parcel Shop
 
                 <!-- <ul class="f-menu">
@@ -65,11 +65,10 @@
         <![endif]-->
 
         <!-- Javascript Libraries -->
-        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+      
+        <script src="/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
        
        
        
@@ -84,9 +83,9 @@
 
        
 
-        <script src="js/functions.js"></script>
-        <script src="js/actions.js"></script>
-        <script src="js/demo.js"></script>
+        <script src="/js/functions.js"></script>
+        <script src="/js/actions.js"></script>
+        <script src="/js/demo.js"></script>
 
     </body>
 </html>

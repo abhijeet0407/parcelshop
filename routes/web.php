@@ -16,3 +16,38 @@ Route::get('/','welcome@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+/*shopmanagers route*/
+Route::get('/shopmanager', 'ShopmanagerController@index');
+Route::get('shopmanager/create','ShopmanagerController@create');
+Route::post('shopmanager/store','ShopmanagerController@store');
+Route::get('shopmanager/singledelete','ShopmanagerController@singleDelete');
+Route::get('shopmanager/bulkdelete','ShopmanagerController@bulkDelete');
+/*shopmanagers route end*/
+
+
+/*customers route*/
+Route::get('/customer', 'customerController@index');
+Route::get('customer/create','customerController@create');
+Route::post('customer/store','customerController@store');
+Route::get('customer/singledelete','customerController@singleDelete');
+Route::get('customer/bulkdelete','customerController@bulkDelete');
+/*customers route end*/
+
+
+/*customers route*/
+Route::get('/parcel', 'parcelController@index');
+Route::get('parcel/create','parcelController@create');
+Route::post('parcel/store','parcelController@store');
+Route::get('parcel/singledelete','parcelController@singleDelete');
+Route::get('parcel/bulkdelete','parcelController@bulkDelete');
+Route::get('parcel/searchcustomer','parcelController@searchCustomer');
+Route::get('parcel/searchshopmanager','parcelController@searchShopmanager');
+Route::get('parcel/addnewparcelid','parcelController@addNewParcel');
+Route::get('parcel/parceldata','parcelController@parcelData');
+Route::post('parcel/parceldatastore','parcelController@parcelDataStore');
+Route::get('cart/','parcelController@parcelCart');
+/*customers route end*/
+
+
+
