@@ -112,6 +112,11 @@ class customerController extends Controller
         $CustomerInsertedId = $Customer->id;
 
         if(isset($CustomerInsertedId)){
+            if(!isset($request['cod'])){
+                $cod=0;
+            }else{
+                $cod=1;
+            }
             $Customer_attr=customer::create([
             'user_id' => $CustomerInsertedId,
             'account_type' => $request['account_type'],
@@ -119,7 +124,7 @@ class customerController extends Controller
             'address' => $request['address'],
             'bankname' => $request['bankname'],
             'bankaccount' => $request['bankaccount'],
-            'cod' => $request['cod']
+            'cod' => $cod
 
             ]);
 
