@@ -66,9 +66,9 @@
 
         <!-- Javascript Libraries -->
       
-        <script src="/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="/vendors/bower_components/Waves/dist/waves.min.js"></script>
-        <script src="/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="<?php echo env('APP_URL22'); ?>/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="<?php echo env('APP_URL22'); ?>/vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="<?php echo env('APP_URL22'); ?>/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
        
        
        
@@ -83,9 +83,9 @@
 
        
 
-        <script src="/js/functions.js"></script>
-        <script src="/js/actions.js"></script>
-        <script src="/js/demo.js"></script>
+        <script src="<?php echo env('APP_URL22'); ?>/js/functions.js"></script>
+        <script src="<?php echo env('APP_URL22'); ?>/js/actions.js"></script>
+        <script src="<?php echo getenv('APP_URL22'); ?>/js/demo.js"></script>
 
     </body>
 </html>
