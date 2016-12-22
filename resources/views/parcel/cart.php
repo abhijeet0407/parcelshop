@@ -14,7 +14,7 @@
                 <div class="card">
                         <form method="GET">
                         <div class="action-header palette-Teal-400 bg clearfix">
-                            <div class="ah-label hidden-xs palette-White text">Parcel</div>
+                            <div class="ah-label hidden-xs palette-White text">Parcel Cart</div>
                             <?php $search_display=''; $q=''; $bgcolor=''; if(isset($_REQUEST['q'])){ $q=$_REQUEST['q']; $search_display='style="display:block"'; $bgcolor='palette-Teal bg'; }?>
                             
                             <div class="ah-search" <?php echo $search_display; ?>>
@@ -33,11 +33,11 @@
                                     </a>
                                 </li>
 
-                                <li>
+                               <!--  <li>
                                     <a class="alt_menu <?php echo $bgcolor; ?>" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add New" href="<?php echo url('parcel/create'); ?>" >
                                         <i class="zmdi zmdi-plus-circle"></i>
                                     </a>
-                                </li>
+                                </li> -->
                                 
                                 <li>
                                       <a class="alt_menu bulkDelete <?php echo $bgcolor; ?>" data-table="parcel" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Bulk delete" href="javascript:void(0)"><i class="zmdi zmdi-minus-circle"></i></a>
@@ -73,7 +73,7 @@
                             <div rel="<?php echo $parcel->cartnumber; ?>" class="list-group-item media">
                                 <div class="pull-right">
                                     
-                                       		<a data-toggle="tooltip" data-placement="bottom" title="" data-original-title="View" href="javascript:void(0)" class="btn btn-xs palette-Orange btn-icon bg waves-effect waves-circle waves-float m-r-10"><i class="zmdi zmdi-eye"></i></a>
+                                       		<a rel="<?php echo $parcel->cartnumber; ?>" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="View" href="javascript:void(0)" class="btn view_cart btn-xs palette-Orange btn-icon bg waves-effect waves-circle waves-float m-r-10"><i class="zmdi zmdi-eye"></i></a>
                                             <a data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" href="javascript:void(0)" class="btn btn-xs palette-Cyan btn-icon bg waves-effect waves-circle waves-float"><i class="zmdi zmdi-edit"></i></a>
                                             <a href="javascript:void(0)" rel="<?php echo $parcel->cartnumber; ?>" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Remove" data-table="parcel" class="btn singleDelete btn-xs btn-danger m-l-10 btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-delete"></i></a>
 
@@ -126,13 +126,49 @@
                 </div>
             </section>
 
-
+            <div id="cart_modal" class="modal fade"  id="modalColor" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Parcel Cart</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Loading Data...
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- <button type="button" class="btn btn-link waves-effect">Save changes</button> -->
+                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+                                </div>
+                        </div>
+                </div>
+            </div>
             <script type="text/javascript">
                 jQuery(document).ready(function($) {
-                    //bulk delete
                     
+                    $('body').on('click','.view_cart',function(){	
+                    	var cartnumber=$(this).attr('rel');
+                    	$('#cart_modal').modal('show');
+                    			$.ajax({
+                                    url: APP_URL+'/cartdata',
+                                    type: 'GET',
+                                    data: 'cartnumber='+encodeURIComponent(cartnumber)
+                                    
+                                })
+                                .done(function(data) {
+                                    //console.log(data);
+                                    $('#cart_modal').find('.modal-body').html(data);
+                                   
+                                })
+                                .fail(function() {
+                                    console.log("error");
+                                })
+                                .always(function() {
+                                    console.log("complete");
+                                });
 
-
+                    })
+                    
+					//bulk delete
                     $('body').on('click','.bulkDelete',function(){
                         //alert('test')
 

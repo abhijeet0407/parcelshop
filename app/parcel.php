@@ -21,6 +21,10 @@ class parcel extends Model
         return $this->belongsTo('App\User','shopmanager_id');
     }
 
+    public function parceldata(){
+        return $this->hasOne('App\parceldata','parcel_id');
+    }
+
 
     
 }

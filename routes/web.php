@@ -47,6 +47,8 @@ Route::get('parcel/addnewparcelid','parcelController@addNewParcel');
 Route::get('parcel/parceldata','parcelController@parcelData');
 Route::post('parcel/parceldatastore','parcelController@parcelDataStore');
 Route::get('cart/','parcelController@parcelCart');
+Route::get('cartdata/','parcelController@parcelCartData');
+
 /*customers route end*/
 
 

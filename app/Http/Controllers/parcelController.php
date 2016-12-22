@@ -42,7 +42,7 @@ class parcelController extends Controller
         if ($query!='')
         {
             
-             $parcel_data = parcel::with('customer','shopmanager')->where('parceltoken','like',"%$query%")->groupBy('cartnumber')->latest()->paginate(20);
+             $parcel_data = parcel::selectRaw('customer_id,shopmanager_id,dtrs.id,dtrs.cartnumber,dtrs.parceltokencount')->rightJoin(DB::raw("(Select cartnumber,max(id) as id,count(parceltoken) as parceltokencount  from parcels where cartnumber='%".$query."%' group by cartnumber) as dtrs"),'parcels.id','=','dtrs.id')->with('customer','shopmanager')->orderBy('dtrs.id','DESC')->paginate(20);
            
         }
         else
@@ -56,6 +56,14 @@ class parcelController extends Controller
         //return $parcel_data;
         return view('parcel/cart')->with('parcel_data',$parcel_data);
 
+    }
+
+    protected function parcelCartData(Request $request){
+        $query = $request->get('cartnumber');
+       // $query='5858a75404b7d';
+        $parcel_data = parcel::with('customer','shopmanager','parceldata')->where('cartnumber','=',$query)->paginate(20);
+        //return $parcel_data;
+        return view('parcel/cartparcel')->with('parcel_data',$parcel_data);
     }
 
     public function searchCustomer(Request $request){

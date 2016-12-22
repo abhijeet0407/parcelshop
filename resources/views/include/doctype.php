@@ -19,8 +19,9 @@
         
         <!-- CSS -->
         <link href="/css/app.css" rel="stylesheet">
-        <link href="/css/app.min.1.css" rel="stylesheet">
+        
         <link href="/css/app.min.2.css" rel="stylesheet">
+        <link href="/css/app.min.1.css" rel="stylesheet">
         <!-- js --> 
         <script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="/js/jquery-ui.min.js"></script>
