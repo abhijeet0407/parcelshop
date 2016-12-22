@@ -36,7 +36,7 @@
                 </li> -->
                 <li class="dropdown hm-profile">
                     <a data-toggle="dropdown" href="">
-                    <img src="/img/dhl.png" alt=""> 
+                    <img src="<?php echo env('APP_URL22'); ?>/img/dhl.png" alt=""> 
                     </a>
                     
                     <ul class="dropdown-menu pull-right dm-icon">

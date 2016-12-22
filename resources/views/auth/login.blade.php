@@ -7,16 +7,16 @@
         <title><?php echo config('app.name', 'DHL') ?></title>
 
         <!-- Vendor CSS -->
-        <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
-        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+        <link href="<?php echo env('APP_URL22'); ?>/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="<?php echo env('APP_URL22'); ?>/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="<?php echo env('APP_URL22'); ?>/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="<?php echo env('APP_URL22'); ?>/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+        <link href="<?php echo env('APP_URL22'); ?>/vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
         
         <!-- CSS -->
-        <link href="css/app.min.1.css" rel="stylesheet">
-        <link href="css/app.min.2.css" rel="stylesheet"> 
-         <script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <link href="<?php echo env('APP_URL22'); ?>/css/app.min.1.css" rel="stylesheet">
+        <link href="<?php echo env('APP_URL22'); ?>/css/app.min.2.css" rel="stylesheet"> 
+         <script src="<?php echo env('APP_URL22'); ?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
     </head>
     <body >
  
