@@ -21,7 +21,7 @@
                         <div class="form-group fg-float">
                             <div class="fg-line">
                                  <input type="text" name="customer_name" value="<?php echo old('customer_name') ?>" class="input-sm form-control fg-input" required>
-                                <input type="hidden" name="customer_id">
+                                <input type="hidden" required="required" name="customer_id">
                                 <label class="fg-label">Customer*</label>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                         <div class="form-group fg-float m-t-30">
                             <div class="fg-line">
                                 <input type="text" name="shopmanager_name" value="<?php echo old('shopmanager_name') ?>" class="input-sm form-control fg-input" required>
-                                 <input type="hidden" name="shopmanager_id">
+                                 <input type="hidden" required="required" name="shopmanager_id">
                                 <label class="fg-label">Shopmanager*</label>
 
                             </div>
@@ -83,6 +83,7 @@
             $('[name="customer_name"]').autocomplete({
               source: APP_URL+"/parcel/searchcustomer",
               minLength: 2,
+              change: function (event, ui) { console.log('test') },
               select: function( event, ui ) {
                 
                 //alert('test')
