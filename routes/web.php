@@ -53,7 +53,7 @@ Route::get('cartdata/','parcelController@parcelCartData');
 
 
 /*mobile routes*/
-Route::post('shopmanager/login','ShopmanagerController@mobileLogin');
+Route::get('shopmanager/login','ShopmanagerController@mobileLogin');
 
 /*mobile routes end*/
 
