@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\shopmanager;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Auth;
 class ShopmanagerController extends Controller
 {
     //
@@ -137,17 +137,23 @@ class ShopmanagerController extends Controller
 
     protected function mobileLogin(Request $request){
 
-        $userprofile=User::where('email','=',$request['email'])->first();
-
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            // Authentication passed...
+           return 'true';
+        }else{
+            return 'false';
+        }
+//return 'Done'.$request['email'].'  '.bcrypt($request['password']);
+return $userprofile;
         //return count($userprofile);
-        foreach($userprofile as $userp){
+        /*foreach($userprofile as $userp){
             $pass=$userp->password;
         }
         if(Hash::check($pass, bcrypt($request['password']))){
         return 'Done'.$request['email'].'  '.bcrypt($request['password']);
         }else{
         return 'Notdone'.$request['email'].'  '.bcrypt($request['password']);    
-        }
+        }*/
         
     }
 
