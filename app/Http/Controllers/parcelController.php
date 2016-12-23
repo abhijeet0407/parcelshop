@@ -222,12 +222,13 @@ class parcelController extends Controller
     protected function mobilestore(Request $request)
     {
         $cartnumber=uniqid();
+        $shopmanager=user::where('email','=',$request['shopmanager_email'])->first();
         foreach($request['parcel_label'] as $ptoken){
 
             $parcel_inserted_data=parcel::create([
             'parceltoken'=>$ptoken,
             'customer_id'=>$request['customer_id'],
-            'shopmanager_id'=>$request['shopmanager_id'],
+            'shopmanager_id'=>$shopmanager->id,
             'cartnumber'=> $cartnumber
             ]);
 
