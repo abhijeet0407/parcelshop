@@ -137,11 +137,18 @@ class ShopmanagerController extends Controller
 
     protected function mobileLogin(Request $request){
 
-        $userprofile=User::where('email','=',$request['email'])->where('password','=',bcrypt($request['password']))->get();
+        $userprofile=User::where('email','=',$request['email'])->first();
 
         //return count($userprofile);
-
-        return $request['email'].'  '.bcrypt($request['password']);
+        foreach($userprofile as $userp){
+            $pass=$userp->password;
+        }
+        if(Hash::check($pass, bcrypt($request['password']))){
+        return 'Done'.$request['email'].'  '.bcrypt($request['password']);
+        }else{
+        return 'Notdone'.$request['email'].'  '.bcrypt($request['password']);    
+        }
+        
     }
 
 
