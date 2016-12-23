@@ -219,6 +219,28 @@ class parcelController extends Controller
         
     } 
 
+    protected function mobilestore(Request $request)
+    {
+        $cartnumber=uniqid();
+        foreach($request['parcel_label'] as $ptoken){
+
+            $parcel_inserted_data=parcel::create([
+            'parceltoken'=>$ptoken,
+            'customer_id'=>$request['customer_id'],
+            'shopmanager_id'=>$request['shopmanager_id'],
+            'cartnumber'=> $cartnumber
+            ]);
+
+            $parcel_inserted_id[] = $parcel_inserted_data->id;
+
+        }
+       return $parcel_inserted_id;
+        //session()->flash('parcel_inserted_id', $parcel_inserted_id); 
+       // return view('parcel/parceldata')->with('parcel_inserted_data',$parcel_inserted_data);
+        
+        
+    } 
+
     protected function parcelData(Request $request)
     {
 
