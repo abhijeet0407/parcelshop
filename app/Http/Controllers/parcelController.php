@@ -23,12 +23,12 @@ class parcelController extends Controller
         if ($query!='')
         {
             
-             $parcel_data = parcel::with('customer','shopmanager')->where('parceltoken','like',"%$query%")->paginate(20);
+             $parcel_data = parcel::with('customer','shopmanager')->where('parceltoken','like',"%$query%")->orderBy('id','DESC')->paginate(20);
            
         }
         else
         {
-            $parcel_data = parcel::with('customer','shopmanager')->where('cartnumber','!=','')->paginate(20);
+            $parcel_data = parcel::with('customer','shopmanager')->where('cartnumber','!=','')->orderBy('id','DESC')->paginate(20);
            
         }
        
@@ -252,7 +252,7 @@ class parcelController extends Controller
             $parceldata->save();
 
         }
-        
+       return redirect('parcel'); 
 
     } 
 

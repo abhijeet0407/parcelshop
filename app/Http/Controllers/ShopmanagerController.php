@@ -133,4 +133,14 @@ class ShopmanagerController extends Controller
         
       // return $ShopmanagerInsertedId;
     }
+
+
+    protected function mobileLogin(Request $request){
+
+        $userprofile=User::where('email','=',$request['email'])->where('password','=',bcrypt($request['password']))->get();
+
+        return $userprofile;
+    }
+
+
 }

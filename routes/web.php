@@ -52,4 +52,10 @@ Route::get('cartdata/','parcelController@parcelCartData');
 /*customers route end*/
 
 
+/*mobile routes*/
+Route::post('shopmanager/login','ShopmanagerController@mobileLogin');
+
+/*mobile routes end*/
+
+
 

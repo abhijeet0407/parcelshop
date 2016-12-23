@@ -21,7 +21,7 @@
                     <?php   foreach($parcel_data as $parcel){ ?>  
                     <!-- each data container start -->
                       <div class="each_container parceldata_container">
-                        <div class="form-group col-md-3 col-xs-3 col-sm-3 fg-float m-t-30">
+                        <div class="form-group col-md-12 col-xs-12 col-sm-12 fg-float m-t-30">
                             <div class="fg-line">
                                  <input type="text" disabled="disabled" value="<?php echo $parcel->parceltoken; ?>" name="parceltoken" value="<?php echo old('parceltoken') ?>" class="input-sm form-control fg-input" required>
                                 <input type="hidden" name="parcel_id[]" value="<?php echo $parcel->id ?>">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-md-3 col-xs-3 col-sm-3 fg-float m-t-30">
+                        <div class="form-group col-md-12 col-xs-12 col-sm-12 fg-float m-t-30">
                             <div class="fg-line">
                                 <input type="text" name="producttype[]" value="<?php echo old('producttype') ?>" class="input-sm form-control fg-input" >
                                 
@@ -38,7 +38,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-md-3 col-xs-3 col-sm-3 fg-float m-t-30">
+                        <div class="form-group col-md-12 col-xs-12 col-sm-12 fg-float m-t-30">
                             <div class="fg-line">
                                 <input type="text" name="destination[]" value="<?php echo old('destination') ?>" class="input-sm form-control fg-input" >
                                 
@@ -48,7 +48,7 @@
                         </div>
 
 
-                        <div class="form-group col-md-3 col-xs-3 col-sm-3 fg-float m-t-30">
+                        <div class="form-group col-md-12 col-xs-12 col-sm-12 fg-float m-t-30">
                             <div class="fg-line">
                                 <input type="text" name="price[]" value="<?php echo old('price') ?>" class="input-sm form-control fg-input" >
                                 
