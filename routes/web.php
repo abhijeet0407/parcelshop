@@ -39,7 +39,11 @@ Route::get('customer/bulkdelete','customerController@bulkDelete');
 Route::get('/parcel', 'parcelController@index');
 Route::get('parcel/create','parcelController@create');
 Route::post('parcel/store','parcelController@store');
+
 Route::get('parcel/mobilestore','parcelController@mobilestore');
+Route::get('parcel/mobileparcelhtml','parcelController@mobileparcelhtml');
+
+
 Route::get('parcel/singledelete','parcelController@singleDelete');
 Route::get('parcel/bulkdelete','parcelController@bulkDelete');
 Route::get('parcel/searchcustomer','parcelController@searchCustomer');

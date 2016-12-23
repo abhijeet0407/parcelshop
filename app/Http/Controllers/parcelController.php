@@ -105,6 +105,38 @@ class parcelController extends Controller
         
     }
 
+    public function mobileparcelhtml(Request $request){ 
+       $parcelids=$request['parcelids']; 
+       if($parcelids!=''){
+        $parcelids_arr=explode(',',$parcelids);
+        foreach($parcelids_arr as $parcel_arr){
+            $parcel_data=parcel::where('id','=',$parcel_arr)->first();
+    ?>
+    
+    <div class="form-group">
+    <input type="text" class="form-control" name="parceltoken" disabled="disabled" value="<?php echo $parcel_data->parceltoken; ?>"  placeholder="Parcel ID">  
+    <input type="hidden" name="parcel_id[]" value="<?php echo $parcel_data->id; ?>" />
+    </div>     
+        
+    <div class="form-group">
+    <input type="text" class="form-control" name="producttype[]"  placeholder="Product Type">  
+    </div>  
+        
+    <div class="form-group">
+    <input type="text" class="form-control" name="destination[]"  placeholder="Destination">  
+    </div>  
+     
+    <div class="form-group">
+    <input type="text" class="form-control" name="price[]"  placeholder="Price (Calculated)">  
+    </div>  
+    
+        <hr>
+
+    <?php
+            }
+         }
+     }
+
 
     public function addNewParcel(Request $request){ ?>
     
@@ -224,7 +256,7 @@ class parcelController extends Controller
         $cartnumber=uniqid();
         $shopmanager=user::where('email','=',$request['shopmanager_email'])->first();
         foreach($request['parcel_label'] as $ptoken){
-
+            if($ptoken!=''){
             $parcel_inserted_data=parcel::create([
             'parceltoken'=>$ptoken,
             'customer_id'=>$request['customer_id'],
@@ -233,9 +265,15 @@ class parcelController extends Controller
             ]);
 
             $parcel_inserted_id[] = $parcel_inserted_data->id;
+            }
 
         }
-       return $parcel_inserted_id;
+        if(count($parcel_inserted_id)>0){
+           return $parcel_id_string=implode(',',$parcel_inserted_id);
+        }else{
+            return '';
+        }
+        
         //session()->flash('parcel_inserted_id', $parcel_inserted_id); 
        // return view('parcel/parceldata')->with('parcel_inserted_data',$parcel_inserted_data);
         
