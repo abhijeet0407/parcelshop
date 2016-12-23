@@ -139,7 +139,7 @@ class ShopmanagerController extends Controller
 
         $userprofile=User::where('email','=',$request['email'])->where('password','=',bcrypt($request['password']))->get();
 
-        return $userprofile;
+        return count($userprofile);
     }
 
 
