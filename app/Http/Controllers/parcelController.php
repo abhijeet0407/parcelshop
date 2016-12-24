@@ -410,9 +410,9 @@ class parcelController extends Controller
              $parcel_data = parcel::with('customer','shopmanager','parceldata')->where('shopmanager_id','=',$shopmanager_data->id)->orderBy('id','DESC')->get();
            
         }
+       return $parcel_data;
        
-       
-        return view('parcel/mobileparcellist')->with('parcel_data',$parcel_data);
+        //return view('parcel/mobileparcellist')->with('parcel_data',$parcel_data);
         
     }
 
