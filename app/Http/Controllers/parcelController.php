@@ -393,9 +393,31 @@ class parcelController extends Controller
 
             parceldata::where('parcel_id', '=', $request['parcel_id'][$i])->update(['recipient_name' => $request['recipient_name'][$i],'zipcode' => $request['zipcode'][$i],'address' => $request['address'][$i],'phone' => $request['phone'][$i]]);
         }
-       return redirect('parcel'); 
+       return 1; 
 
     }
+
+
+
+    public function mobileparcellist(Request $request){
+        $email = $request->get('email');
+        //$pagination_no=$request->get('pagination_no');
+        $shopmanager_data=user::where('email','=',$email);
+
+        if ($shopmanager_data!='')
+        {
+            
+             $parcel_data = parcel::with('customer','shopmanager','parceldata')->where('shopmanager_id','=',$shopmanager_data->id)->orderBy('id','DESC')->get();
+           
+        }
+       
+       
+        return view('parcel/mobileparcellist')->with('parcel_data',$parcel_data);
+        
+    }
+
+
+
 
 
 }
