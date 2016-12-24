@@ -151,18 +151,18 @@ class parcelController extends Controller
     </div>     
         
     <div class="form-group">
-    <input type="text" class="form-control" name="recipient_name[]"  placeholder="Product Type">  
+    <input type="text" class="form-control" name="recipient_name[]"  placeholder="Recipient Name">  
     </div>  
         
     <div class="form-group">
-    <input type="text" class="form-control" name="zipcode[]"  placeholder="Destination">  
+    <input type="text" class="form-control" name="zipcode[]"  placeholder="Zipcode">  
     </div>  
      
     <div class="form-group">
-    <input type="text" class="form-control" name="address[]"  placeholder="Price (Calculated)">  
+    <input type="text" class="form-control" name="address[]"  placeholder="Address">  
     </div>  
     <div class="form-group">
-    <input type="text" class="form-control" name="phone[]"  placeholder="Price (Calculated)">  
+    <input type="text" class="form-control" name="phone[]"  placeholder="Phone Number">  
     </div> 
     
         <hr>
