@@ -402,7 +402,7 @@ class parcelController extends Controller
     public function mobileparcellist(Request $request){
         $email = $request->get('email');
         //$pagination_no=$request->get('pagination_no');
-        $shopmanager_data=user::where('email','=',$email);
+        $shopmanager_data=user::where('email','=',$email)->first();
 
         if ($shopmanager_data!='')
         {
