@@ -318,4 +318,47 @@ class parcelController extends Controller
     } 
 
 
+
+    protected function mobileparcelstoreone(Request $request)
+    {
+        //foreach($request['parcel_label'] as $ptoken){
+        $loop_count=count($request['parcel_id']);
+
+        for($i=0;$i<=$loop_count-1;$i++)
+        {
+            $parceldata = new parceldata;
+            $parceldata->parcel_id = $request['parcel_id'][$i];
+            $parceldata->producttype = $request['producttype'][$i];
+            $parceldata->destination = $request['destination'][$i];
+            $parceldata->price = $request['price'][$i];
+            $parceldata->save();
+
+        }
+       return redirect('parcel'); 
+
+    }
+
+
+    protected function mobileparcelstoretwo(Request $request)
+    {
+        //foreach($request['parcel_label'] as $ptoken){
+        $loop_count=count($request['parcel_id']);
+
+        for($i=0;$i<=$loop_count-1;$i++)
+        {
+            $parceldata = new parceldata;
+            $parceldata->exists = true;
+            $parceldata->parcel_id = $request['parcel_id'][$i];
+           $parceldata->recipient_name = $request['recipient_name'][$i];
+            $parceldata->zipcode = $request['zipcode'][$i];
+            $parceldata->address = $request['address'][$i];
+            $parceldata->phone = $request['phone'][$i];
+            $parceldata->save();
+
+        }
+       return redirect('parcel'); 
+
+    }
+
+
 }
