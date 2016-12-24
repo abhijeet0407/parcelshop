@@ -391,7 +391,7 @@ class parcelController extends Controller
             $parceldata->save();
 */
 
-            User::where('parcel_id', '=', $request['parcel_id'][$i])->update(['recipient_name' => $request['recipient_name'][$i],'zipcode' => $request['zipcode'][$i],'address' => $request['address'][$i],'phone' => $request['phone'][$i]]);
+            parceldata::where('parcel_id', '=', $request['parcel_id'][$i])->update(['recipient_name' => $request['recipient_name'][$i],'zipcode' => $request['zipcode'][$i],'address' => $request['address'][$i],'phone' => $request['phone'][$i]]);
         }
        return redirect('parcel'); 
 
