@@ -137,6 +137,41 @@ class parcelController extends Controller
          }
      }
 
+     public function mobileparcelhtmltwo(Request $request){ 
+       $parcelids=$request['parcelids']; 
+       if($parcelids!=''){
+        $parcelids_arr=explode(',',$parcelids);
+        foreach($parcelids_arr as $parcel_arr){
+            $parcel_data=parcel::where('id','=',$parcel_arr)->first();
+    ?>
+    
+    <div class="form-group">
+    <input type="text" class="form-control" name="parceltoken" disabled="disabled" value="<?php echo $parcel_data->parceltoken; ?>"  placeholder="Parcel ID">  
+    <input type="hidden" name="parcel_id[]" value="<?php echo $parcel_data->id; ?>" />
+    </div>     
+        
+    <div class="form-group">
+    <input type="text" class="form-control" name="recipient_name[]"  placeholder="Product Type">  
+    </div>  
+        
+    <div class="form-group">
+    <input type="text" class="form-control" name="zipcode[]"  placeholder="Destination">  
+    </div>  
+     
+    <div class="form-group">
+    <input type="text" class="form-control" name="address[]"  placeholder="Price (Calculated)">  
+    </div>  
+    <div class="form-group">
+    <input type="text" class="form-control" name="phone[]"  placeholder="Price (Calculated)">  
+    </div> 
+    
+        <hr>
+
+    <?php
+            }
+         }
+     }
+
 
     public function addNewParcel(Request $request){ ?>
     
