@@ -98,7 +98,51 @@
                 </div>
             </section>
 
-          
+          <script type="text/javascript">
+              
+              jQuery(document).ready(function($) {
+                <?php if (count($errors) > 0){
+                        foreach ($errors->all() as $error){
+                 ?>
+                        notify22('<?php echo $error; ?>','danger')
+                                  
+                            <?php } ?>
+                        
+                <?php } ?>
+
+
+
+
+                function notify22(message, type){
+                        $.growl({
+                            message: message
+                        },{
+                            type: type,
+                            allow_dismiss: false,
+                            label: 'Cancel',
+                            className: 'btn-xs btn-inverse',
+                            placement: {
+                                from: 'top',
+                                align: 'right'
+                            },
+                            delay: 4500,
+                            animate: {
+                                    enter: 'animated fadeInDown',
+                                    exit: 'animated fadeOutUp'
+                            },
+                            offset: {
+                                x: 20,
+                                y: 25
+                            }
+                        });
+                };
+
+
+
+              });   
+
+
+          </script>
 
 <?php include(base_path().'/resources/views/include/footer.php') ?>
 

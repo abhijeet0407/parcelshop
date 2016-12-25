@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','welcome@index');
+Route::get('/','HomeController@index');
 
 Auth::routes();
 
@@ -48,9 +48,10 @@ Route::get('parcel/mobileparcelstoretwo','parcelController@mobileparcelstoretwo'
 
 Route::get('parcel/mobileparcellist','parcelController@mobileparcellist');
 
-
+Route::get('parcel/singledeleteparcel','parcelController@singleDeleteParcel');
 Route::get('parcel/singledelete','parcelController@singleDelete');
 Route::get('parcel/bulkdelete','parcelController@bulkDelete');
+Route::get('parcel/bulkdeleteparcel','parcelController@bulkdeleteparcel');
 Route::get('parcel/searchcustomer','parcelController@searchCustomer');
 Route::get('parcel/searchshopmanager','parcelController@searchShopmanager');
 Route::get('parcel/addnewparcelid','parcelController@addNewParcel');

@@ -39,7 +39,7 @@
                                 </li>
                                 
                                 <li>
-                                      <a class="alt_menu <?php echo $bgcolor; ?>" data-table="parcel" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Bulk delete" href="javascript:void(0)"><i class="zmdi zmdi-minus-circle"></i></a>
+                                      <a class="bulkDelete2 alt_menu <?php echo $bgcolor; ?>" data-table="parcel" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Bulk delete" href="javascript:void(0)"><i class="zmdi zmdi-minus-circle"></i></a>
                                 </li>
                                 <li>
                                         <a data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Refresh" class="alt_menu <?php echo $bgcolor; ?>" href="javascript:void(0)"><i class="zmdi zmdi-refresh-alt"></i></a>
@@ -74,7 +74,7 @@
                                     
                                        
                                             <a data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" href="javascript:void(0)" class="btn btn-xs palette-Cyan btn-icon bg waves-effect waves-circle waves-float"><i class="zmdi zmdi-edit"></i></a>
-                                            <a href="javascript:void(0)" rel="<?php echo $parcel->id; ?>" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Remove" data-table="parcel" class="btn singleDelete btn-xs btn-danger m-l-10 btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-delete"></i></a>
+                                            <a href="javascript:void(0)" rel="<?php echo $parcel->id; ?>" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Remove" data-table="parcel" class="btn singleDelete2 btn-xs btn-danger m-l-10 btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-delete"></i></a>
 
                                             
                                        
@@ -128,11 +128,61 @@
 
             <script type="text/javascript">
                 jQuery(document).ready(function($) {
+
+                    //singledelete
+                    $('body').on('click','.singleDelete2',function(){
+                        //alert('test')
+                        var rel=$(this).attr('rel');
+                            var bel=$(this).attr('data-table');
+
+                        swal({
+                          title: "Are you sure?",
+                          text: "You want to delete the data!",
+                          type: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#DD6B55",
+                          confirmButtonText: "Yes, delete it!",
+                          closeOnConfirm: true
+                        },
+                        function(){
+                          
+
+                            //console.log(rel);
+                            $.ajax({
+                                url: APP_URL+'/'+bel+'/singledeleteparcel',
+                                type: 'GET',
+                                data: 'id='+rel,
+                            })
+                            .done(function(data) {
+                                if(data=='deleted'){
+                                    $('.list-group-item[rel="'+rel+'"]').remove();
+                                }
+                            })
+                            .fail(function() {
+                                console.log("error");
+                            })
+                            .always(function() {
+                                console.log("complete");
+                            });
+
+                            });
+
+
+                        
+                        
+                        
+
+                    });
+
+                   //single delete end
+
+
+
                     //bulk delete
                     
 
 
-                    $('body').on('click','.bulkDelete',function(){
+                    $('body').on('click','.bulkDelete2',function(){
                         //alert('test')
 
                         if($('.acc-check:checked').length==0){
@@ -161,7 +211,7 @@
                                 var myJsonString = checked_ids.join(",");
 
                                 $.ajax({
-                                    url: APP_URL+'/'+bel+'/bulkdelete',
+                                    url: APP_URL+'/'+bel+'/bulkdeleteparcel',
                                     type: 'GET',
                                     data: 'bulkids='+encodeURIComponent(myJsonString)
                                     

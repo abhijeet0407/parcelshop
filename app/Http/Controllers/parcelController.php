@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Validator;
 class parcelController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 	 public function index(Request $request){
     	$query = $request->get('q');
@@ -194,14 +198,28 @@ class parcelController extends Controller
           $singleid=$request->get('id');
         $finddeleteid = Parcel::select('id')->where('cartnumber','=',$singleid)->get();
         foreach($finddeleteid as $deleteid){
-            //echo $deleteid->id;
-            //$deleteid->delete();
-            Parcel::find($deleteid->id)->delete();
+            $del_id=Parcel::find($deleteid->id);
+            return $del_id; 
+            //$del_id->delete();
+        }
+        
+      //  return 'deleted';
+
+    }
+
+    protected function singleDeleteParcel(Request $request){
+          $singleid=$request->get('id');
+        $finddeleteid = Parcel::find($singleid);
+        if($finddeleteid->delete()){
+            return 'deleted';
+        }else{
+            return 'notdeleted';
         }
         
         return 'deleted';
 
     }
+    
 
     protected function bulkDelete(Request $request){
         
@@ -221,6 +239,35 @@ class parcelController extends Controller
                 Parcel::find($deleteid->id)->delete();
             }
            // $bulks->delete();
+
+        }
+
+        /*$finddeleteid = User::find($singleid);
+        if($finddeleteid->delete()){
+            return 'deleted';
+        }else{
+            return 'notdeleted';
+        }*/
+
+        return 'deleted';
+        
+
+    }
+
+
+    protected function bulkdeleteparcel(Request $request){
+        
+        $bulkids_csv=$request->get('bulkids');
+        if($bulkids_csv!=''){
+            $bulkids_csv=urldecode($bulkids_csv);
+            $bulkids_arr=explode(',',$bulkids_csv);
+        }
+        //$bulkids_arr=json_decode($bulkids, TRUE);
+        $bulkids_arr_data = Parcel::find($bulkids_arr);
+
+        foreach($bulkids_arr_data as $bulks){
+
+            $bulks->delete();
 
         }
 
@@ -266,6 +313,21 @@ class parcelController extends Controller
      */
     protected function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'customer_id' => 'required|max:255',
+            'shopmanager_id' => 'required|max:255',
+            'parcel_label.*' =>'required'
+        ],[ 'customer_id.required' => 'Please provide registered customer',
+            'shopmanager_id' => 'Please provide registered shopmanager',
+            'parcel_label.*' =>'Please provide Parcel number']);
+
+        if ($validator->fails()) {
+            return redirect('shopmanager/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $cartnumber=uniqid();
         foreach($request['parcel_label'] as $ptoken){
 

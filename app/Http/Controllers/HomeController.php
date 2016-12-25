@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        if($user->userrole=='administrator'){
+            return view('home');
+        }else{
+            Auth::logout();
+            Session::flush();
+            //return 'sess';
+            //return redirect('login')->with('nopermission', 'nopermission');
+           return redirect()->route('login', ['nopermission' => 1]);
+        }
+        
+        //
     }
 }

@@ -17,6 +17,30 @@ $(window).load(function () {
 
         }
     }
+
+
+    /*
+     * Login
+     */
+    /*if ($('.login')[0]) {
+        $('body').on('click', '.l-block [data-block]', function(e){
+            e.preventDefault();
+
+            var z = $(this).data('block');
+            var t = $(this).closest('.l-block');
+            var c = $(this).data('bg');
+
+            t.removeClass('toggled');
+
+            setTimeout(function(){
+                $('.login').attr('data-lbg', c);
+                $(z).addClass('toggled');
+            });
+
+        })
+    }*/
+
+    
 })
 
 $(document).ready(function(){
@@ -534,26 +558,7 @@ $(document).ready(function(){
         });
     }
 
-    /*
-     * Login
-     */
-    if ($('.login')[0]) {
-        $('body').on('click', '.l-block [data-block]', function(e){
-            e.preventDefault();
-
-            var z = $(this).data('block');
-            var t = $(this).closest('.l-block');
-            var c = $(this).data('bg');
-
-            t.removeClass('toggled');
-
-            setTimeout(function(){
-                $('.login').attr('data-lbg', c);
-                $(z).addClass('toggled');
-            });
-
-        })
-    }
+    
 
     /*
      * Fullscreen Browsing

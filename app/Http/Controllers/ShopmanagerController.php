@@ -11,7 +11,10 @@ class ShopmanagerController extends Controller
 {
     //
 
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request){
     	$query = $request->get('q');
        
@@ -101,6 +104,23 @@ class ShopmanagerController extends Controller
      */
     protected function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+             'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+            'phone' => 'required',
+            'address' => 'required'
+        ],[
+    'email.unique' => 'Email address is already registered and active or the user is deleted by administrator!',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('shopmanager/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $Shopmanager= User::create([
             'name' => $request['name'],
             'email' => $request['email'],

@@ -100,6 +100,25 @@ class customerController extends Controller
      */
     protected function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+             'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+            'account_type' => 'required',
+            'phone' => 'required',
+            'address' => 'required'
+        ],[
+    'email.unique' => 'Email address is already registered and active or the user is deleted by administrator!',
+]);
+
+        if ($validator->fails()) {
+            return redirect('customer/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+
         $Customer= User::create([
             'name' => $request['name'],
             'email' => $request['email'],

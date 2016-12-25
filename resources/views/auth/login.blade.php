@@ -17,50 +17,70 @@
         <link href="<?php echo env('APP_URL22'); ?>/css/app.min.1.css" rel="stylesheet">
         <link href="<?php echo env('APP_URL22'); ?>/css/app.min.2.css" rel="stylesheet"> 
          <script src="<?php echo env('APP_URL22'); ?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+          <script src="<?php echo env('APP_URL22'); ?>/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+
+          <script type="text/javascript">
+               jQuery(document).ready(function($) {
+                    function notify22(message, type){
+                        $.growl({
+                            message: message
+                        },{
+                            type: type,
+                            allow_dismiss: false,
+                            label: 'Cancel',
+                            className: 'btn-xs btn-inverse',
+                            placement: {
+                                from: 'top',
+                                align: 'right'
+                            },
+                            delay: 2500,
+                            animate: {
+                                    enter: 'animated fadeInDown',
+                                    exit: 'animated fadeOutUp'
+                            },
+                            offset: {
+                                x: 20,
+                                y: 25
+                            }
+                        });
+                    };
+
+                    <?php if($errors->has('email')){ ?> 
+
+                          notify22('Incorrect Login Credentials. Please try again.','danger')
+                <?php } ?>
+
+                <?php if(isset($_GET['nopermission'])){ ?>
+                         notify22('Restriced Access! Only administrator can login.','warning')
+                 history.pushState(null, null, '/login');
+                 <?php } ?>
+
+
+                }); 
+
+                
+
+          </script>
+
+
     </head>
     <body >
  
 
 <div class="login" data-lbg="teal">
             <!-- Login -->
-            <div class="l-block toggled" id="l-login">
+            <div class="l-block " style="display: inline-block;" id="l-login">
                 <div class="lb-header palette-Teal bg">
                     <i class="zmdi zmdi-account-circle"></i>
                     Hi there! Please Sign in
                 </div>
 
                 <div class="lb-body">
-
+                   
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
-                        <!-- <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> -->
+                        
 
 
                         <div class="form-group fg-float">
@@ -68,11 +88,7 @@
                             <input  id="email" type="email"  name="email" value="{{ old('email') }}" required autofocus class="input-sm form-control fg-input">
                             <label class="fg-label">Email Address</label>
                         </div>
-                        @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                        @endif
+                        
                     </div>
 
                     <div class="form-group fg-float">
@@ -81,11 +97,7 @@
                             <label class="fg-label">Password</label>
                         </div>
 
-                        @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                        
                     </div>
 
 

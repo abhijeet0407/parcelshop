@@ -28,7 +28,7 @@
         <script src="<?php echo env('APP_URL22'); ?>/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="<?php echo env('APP_URL22'); ?>/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
         <script src="<?php echo env('APP_URL22'); ?>/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
-        
+         <script src="<?php echo env('APP_URL22'); ?>/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
         <!-- js end -->
         <style type="text/css">
             #example_length{ margin-left: 40px; }
