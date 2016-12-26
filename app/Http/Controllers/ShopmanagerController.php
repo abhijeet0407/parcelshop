@@ -13,7 +13,7 @@ class ShopmanagerController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
     public function index(Request $request){
     	$query = $request->get('q');
@@ -164,7 +164,7 @@ class ShopmanagerController extends Controller
             return 'false';
         }
 //return 'Done'.$request['email'].'  '.bcrypt($request['password']);
-return $userprofile;
+//return $userprofile;
         //return count($userprofile);
         /*foreach($userprofile as $userp){
             $pass=$userp->password;
