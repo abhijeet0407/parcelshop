@@ -158,4 +158,73 @@ class customerController extends Controller
       // return $ShopmanagerInsertedId;
     }
 
+
+
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return User
+     */
+    protected function mobilestore(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+             'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+            'account_type' => 'required',
+            'phone' => 'required',
+            'address' => 'required'
+        ],[
+    'email.unique' => 'Email address is already registered and active or the user is deleted by administrator!',
+]);
+
+        if ($validator->fails()) {
+            return 'Customer is already registered';
+        }
+
+
+        $Customer= User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+           'password' => bcrypt($request['password']),
+            'userrole' => 'customer'
+            
+        ]);
+
+        $CustomerInsertedId = $Customer->id;
+
+        if(isset($CustomerInsertedId)){
+            if(!isset($request['cod'])){
+                $cod=0;
+            }else{
+                $cod=1;
+            }
+            $Customer_attr=customer::create([
+            'user_id' => $CustomerInsertedId,
+            'account_type' => $request['account_type'],
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+            'bankname' => $request['bankname'],
+            'bankaccount' => $request['bankaccount'],
+            'cod' => $cod
+
+            ]);
+
+        }
+            
+        if(isset($Customer_attr)){
+            return 'customer_registered';
+        }else{
+            return 'customer_registered';
+        }
+        
+      // return $ShopmanagerInsertedId;
+    }
+
+
+
+
 }
