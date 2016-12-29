@@ -30,7 +30,7 @@ Route::get('shopmanager/bulkdelete','ShopmanagerController@bulkDelete');
 Route::get('/customer', 'customerController@index');
 Route::get('customer/create','customerController@create');
 Route::post('customer/store','customerController@store');
-Route::post('customer/mobilestore','customerController@mobilestore');
+Route::get('customer/mobilestore','customerController@mobilestore');
 Route::get('customer/singledelete','customerController@singleDelete');
 Route::get('customer/bulkdelete','customerController@bulkDelete');
 /*customers route end*/
