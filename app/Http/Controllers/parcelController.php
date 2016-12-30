@@ -72,8 +72,8 @@ class parcelController extends Controller
 
     public function searchCustomer(Request $request){
         $query = $request->get('term');
-        $customer_data = User::where('name', 'ILIKE', "%$query%")->where('userrole','=','customer')->get();
-       //print_r($customer_data);
+        $customer_data = User::where('name', 'ILIKE', "%$query%")->with('customer')->where('userrole','=','customer')->get();
+       print_r($customer_data);
        
         $a_json = array();
         $a_json_row = array();
@@ -85,7 +85,7 @@ class parcelController extends Controller
         array_push($a_json, $a_json_row);
         }
         
-        return json_encode ($a_json);
+       // return json_encode ($a_json);
         
     }
 
