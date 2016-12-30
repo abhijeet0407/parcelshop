@@ -81,7 +81,7 @@ class parcelController extends Controller
           //print_r($cust_data['name']);
         $a_json_row["id"] = $cust_data['id'];
         $a_json_row["value"] = $cust_data['name'];
-        $a_json_row["label"] = $cust_data['name'].'('.$cust_data['customer']['account_type'].')';
+        $a_json_row["label"] = $cust_data['name'].' ('.$cust_data['customer']['account_type'].')';
         $a_json_row["account_type"] = $cust_data['customer']['account_type'];
         
         array_push($a_json, $a_json_row);
