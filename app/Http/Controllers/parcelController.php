@@ -481,6 +481,24 @@ class parcelController extends Controller
     }
 
 
+    public function mobileparcellistnorecipient(Request $request){
+        $email = $request->get('email');
+        //$pagination_no=$request->get('pagination_no');
+        $shopmanager_data=user::where('email','=',$email)->first();
+
+        if ($shopmanager_data!='')
+        {
+            
+             $parcel_data = parcel::join('parceldatas', 'parcels.id', '=', 'parceldatas.parcel_id')->where('parcels.shopmanager_id','=',$shopmanager_data->id)->select('parcels.parceltoken')->orderBy('parcels.id','DESC')->toSql();
+           
+        }
+       return $shopmanager_data->id;
+       
+        //return view('parcel/mobileparcellist')->with('parcel_data',$parcel_data);
+        
+    }
+
+
 
 
 

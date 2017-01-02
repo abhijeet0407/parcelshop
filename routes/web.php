@@ -48,6 +48,7 @@ Route::get('parcel/mobileparcelstoreone','parcelController@mobileparcelstoreone'
 Route::get('parcel/mobileparcelstoretwo','parcelController@mobileparcelstoretwo');
 
 Route::get('parcel/mobileparcellist','parcelController@mobileparcellist');
+Route::get('parcel/mobileparcellistnorecipient','parcelController@mobileparcellistnorecipient');
 
 Route::get('parcel/singledeleteparcel','parcelController@singleDeleteParcel');
 Route::get('parcel/singledelete','parcelController@singleDelete');
