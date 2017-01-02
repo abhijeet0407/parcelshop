@@ -464,7 +464,10 @@ class parcelController extends Controller
     protected function updaterecipientdatamobile(Request $request)
     {
        
-            parceldata::where('parcel_id', '=', $request['parcel_id'])->update(['recipient_name' => $request['recipient_name'],'zipcode' => $request['zipcode'],'address' => $request['address'],'phone' => $request['phone']);
+            parceldata::where('parcel_id', '=', $request['parcel_id'])
+            ->update(
+                ['recipient_name' => $request['recipient_name'],'zipcode' => $request['zipcode'],'address' => $request['address'],'phone' => $request['phone']]
+                );
         
        return 1; 
 
