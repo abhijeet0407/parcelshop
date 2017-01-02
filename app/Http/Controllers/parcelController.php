@@ -489,7 +489,7 @@ class parcelController extends Controller
         if ($shopmanager_data!='')
         {
             
-             $parcel_data = parcel::join('parceldatas', 'parcels.id', '=', 'parceldatas.parcel_id')->where('parcels.shopmanager_id','=',$shopmanager_data->id)->select('parcels.parceltoken')->orderBy('parcels.id','DESC')->get();
+             $parcel_data = parcel::join('parceldatas', 'parcels.id', '=', 'parceldatas.parcel_id')->where('parcels.shopmanager_id','=',$shopmanager_data->id)->where('parceldatas.recipient_name', '=', '')->orWhereNull('parceldatas.recipient_name')->select('parcels.parceltoken')->orderBy('parcels.id','DESC')->get();
            
         }
        return $parcel_data;
