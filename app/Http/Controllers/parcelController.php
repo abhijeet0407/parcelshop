@@ -492,6 +492,25 @@ class parcelController extends Controller
         
     }
 
+    public function mobilehandoverparcellist(Request $request){
+        $email = $request->get('email');
+        //$pagination_no=$request->get('pagination_no');
+        $shopmanager_data=user::where('email','=',$email)->first();
+
+        if ($shopmanager_data!='')
+        {
+            
+             $parcel_data = parcel::with('customer','shopmanager','parceldata')->where('shopmanager_id','=',$shopmanager_data->id)->whereNull('handover')->orderBy('id','DESC')->get();
+           
+        }
+       //return $parcel_data;
+       
+        return view('parcel/mobilehandoverparcellist')->with('parcel_data',$parcel_data);
+        
+    }
+
+    
+
 
     public function mobileparcellistnorecipient(Request $request){
         $email = $request->get('email');
