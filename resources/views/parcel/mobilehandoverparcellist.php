@@ -1,4 +1,6 @@
-<?php $i=1; foreach($parcel_data as $parcel){ ?>
+<?php $i=1; foreach($parcel_data as $parcel){
+	if(($parcel->parceldata['recipient_name']!='') && ($parcel->parceldata['zipcode']!='') && ($parcel->parceldata['address']!='')  && ($parcel->parceldata['phone']!='') && ($parcel->parceldata['producttype']!='') && ($parcel->parceldata['destination']!='') && ($parcel->parceldata['price']!='') ){
+ ?>
 
 	
 	<tr> 
@@ -12,4 +14,7 @@
 	</tr>
 
 
-<?php  $i++; } ?>
+<?php  $i++;
+}
+
+ } ?>
