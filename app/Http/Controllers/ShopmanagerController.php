@@ -154,6 +154,21 @@ class ShopmanagerController extends Controller
       // return $ShopmanagerInsertedId;
     }
 
+    protected function changepassword(Request $request)
+    {
+        
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['old_password']])) {
+                User::where('email','=',$request['email'])
+                ->update(['password'=>bcrypt($request['new_password'])]);
+                return 1;
+            }else{
+                return 'Please provide correct credentials to change password';
+            }
+           
+
+
+    }
+
 
     protected function mobileLogin(Request $request){
 

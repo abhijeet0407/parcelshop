@@ -23,6 +23,8 @@ Route::get('shopmanager/create','ShopmanagerController@create');
 Route::post('shopmanager/store','ShopmanagerController@store');
 Route::get('shopmanager/singledelete','ShopmanagerController@singleDelete');
 Route::get('shopmanager/bulkdelete','ShopmanagerController@bulkDelete');
+
+Route::get('shopmanager/changepassword','ShopmanagerController@changepassword');
 /*shopmanagers route end*/
 
 
