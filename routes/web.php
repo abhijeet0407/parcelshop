@@ -50,6 +50,7 @@ Route::get('parcel/updaterecipientdatamobile','parcelController@updaterecipientd
 
 Route::get('parcel/mobileparcellist','parcelController@mobileparcellist');
 Route::get('parcel/mobileparcellistnorecipient','parcelController@mobileparcellistnorecipient');
+Route::get('parcel/mobilehandoverparcellist','parcelController@mobilehandoverparcellist');
 
 Route::get('parcel/singledeleteparcel','parcelController@singleDeleteParcel');
 Route::get('parcel/singledelete','parcelController@singleDelete');
