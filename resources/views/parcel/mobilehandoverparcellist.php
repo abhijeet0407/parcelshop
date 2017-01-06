@@ -1,5 +1,5 @@
 <?php $i=1; foreach($parcel_data as $parcel){
-  print_r($parcel->customer);
+  print_r($parcel);
   echo 'ssa '.$parcel->customer['account_type'];
   if($parcel->customer['account_type']=='Prepaid Customer'){
     if(($parcel->parceldata['recipient_name']!='') && ($parcel->parceldata['zipcode']!='') && ($parcel->parceldata['address']!='')  && ($parcel->parceldata['phone']!='') ){
