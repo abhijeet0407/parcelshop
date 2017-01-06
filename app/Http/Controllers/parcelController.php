@@ -498,7 +498,7 @@ class parcelController extends Controller
         if ($shopmanager_data!='')
         {
             
-             $parcel_data = parcel::with('customer','shopmanager','parceldata')->where('shopmanager_id','=',$shopmanager_data->id)->orderBy('id','DESC')->get();
+             $parcel_data = parcel::with('customer','shopmanager','parceldata')->where('shopmanager_id','=',$shopmanager_data->id)->where('handover','!=','Done')->orderBy('id','DESC')->get();
            
         }
        //return $parcel_data;
