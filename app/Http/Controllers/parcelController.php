@@ -379,6 +379,10 @@ class parcelController extends Controller
             ]);
 
             $parcel_inserted_id[] = $parcel_inserted_data->id;
+
+            $parceldata = new parceldata;
+            $parceldata->parcel_id = $parcel_inserted_data->id;
+            $parceldata->save();
             }
 
         }
@@ -433,6 +437,9 @@ class parcelController extends Controller
 
 
 
+
+
+
     protected function mobileparcelstoreone(Request $request)
     {
         //foreach($request['parcel_label'] as $ptoken){
@@ -469,8 +476,20 @@ class parcelController extends Controller
             $parceldata->phone = $request['phone'][$i];
             $parceldata->save();
 */
-
-            parceldata::where('parcel_id', '=', $request['parcel_id'][$i])->update(['recipient_name' => $request['recipient_name'][$i],'zipcode' => $request['zipcode'][$i],'address' => $request['address'][$i],'phone' => $request['phone'][$i]]);
+            $record = parceldata::where('parcel_id', '=', $request['parcel_id'][$i])->first();
+            if (is_null($record)) {
+                 $parceldata = new parceldata;
+            $parceldata->parcel_id = $request['parcel_id'][$i];
+            $parceldata->recipient_name = $request['recipient_name'][$i];
+            $parceldata->zipcode = $request['zipcode'][$i];
+            $parceldata->address = $request['address'][$i];
+            $parceldata->phone = $request['phone'][$i];
+            $parceldata->save();
+                
+            } else {
+                 parceldata::where('parcel_id', '=', $request['parcel_id'][$i])->update(['recipient_name' => $request['recipient_name'][$i],'zipcode' => $request['zipcode'][$i],'address' => $request['address'][$i],'phone' => $request['phone'][$i]]);
+            }
+           
         }
        return 1; 
 
