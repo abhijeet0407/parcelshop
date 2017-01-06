@@ -354,7 +354,7 @@ class parcelController extends Controller
     {
         foreach($request['checked_parcels'] as $ptoken){
 
-            parcel::where('parcel', '=', $ptoken)
+            parcel::where('id', '=', $ptoken)
             ->update(
                 ['handover' => 'Done']
                 );
