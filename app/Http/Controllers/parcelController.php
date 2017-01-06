@@ -352,7 +352,9 @@ class parcelController extends Controller
 
     protected function mobilehandoverparcelliststore(Request $request)
     {
-        foreach($request['checked_parcels'] as $ptoken){
+        $checked_parcels_str=checked_parcels;
+        $checked_parcels_arr=explode(',', $checked_parcels_str);
+        foreach($checked_parcels_arr as $ptoken){
 
             parcel::where('id', '=', $ptoken)
             ->update(
