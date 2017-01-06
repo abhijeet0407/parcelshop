@@ -350,6 +350,19 @@ class parcelController extends Controller
         
     } 
 
+    protected function mobilehandoverparcelliststore(Request $request)
+    {
+        foreach($request['checked_parcels'] as $ptoken){
+
+            parcel::where('parcel', '=', $ptoken)
+            ->update(
+                ['handover' => 'Done']
+                );
+
+        }
+
+    }
+
     protected function mobilestore(Request $request)
     {
         $cartnumber=uniqid();
