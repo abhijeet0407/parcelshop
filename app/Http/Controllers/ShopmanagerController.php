@@ -175,7 +175,7 @@ class ShopmanagerController extends Controller
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             // Authentication passed...
 
-           $user_vals= User::where('email','=',$request['email']);
+           $user_vals= User::where('email','=',$request['email'])->get();
            //console.log($user_vals);
            return $user_vals;
         }else{
